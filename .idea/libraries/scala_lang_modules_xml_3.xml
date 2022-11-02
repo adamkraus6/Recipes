@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="scala.lang.modules.xml_3" type="repository">
+    <properties maven-id="org.scala-lang.modules:scala-xml_3:2.1.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/scala-xml_3-2.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/scala3-library_3-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/scala-library-2.13.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

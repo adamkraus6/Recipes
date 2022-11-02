@@ -1,0 +1,7 @@
+/out
+/.vscode
+/*.jar
+/*.out
+/*.txt
+/*.xml
+/*.iml

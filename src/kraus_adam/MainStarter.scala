@@ -35,6 +35,26 @@ object MainStarter {
                 temp = StdIn.readLine()
 
             choice = temp
+
+            if(choice == "1") {
+                // Add Data
+            } else if(choice == "2") {
+                // Display Data
+            } else if(choice == "3") {
+                // Remove Recipe
+            } else if(choice == "4") {
+                // Load XML
+            } else if(choice == "5") {
+                // Write XML
+            } else if(choice == "6") {
+                // Find Ingredient in Recipe
+            } else if(choice == "7") {
+                // Calculate Calories
+            } else if(choice == "8") {
+                // Calculate Volume
+            } else if(choice == "9") {
+                // Calculate Calorie Density
+            }
         }
     }
 }

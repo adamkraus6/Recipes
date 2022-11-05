@@ -1,7 +1,6 @@
 package kraus_adam
 
 import kraus_adam.Ingredients.*
-
 import java.io.{FileNotFoundException, FileWriter}
 import java.text.DecimalFormat
 import scala.io.StdIn
@@ -45,7 +44,8 @@ object MainStarter {
                 val name = StdIn.readLine().capitalize
                 if(!recipes.find(name)) {
                     val recipe = Recipe(name)
-                    recipe.addIngredient(addIngredient())
+                    // GRADING: ADD
+                    recipe.addIngredient()
                     recipes.addRecipe(recipe)
                 } else {
                     println(s"${name} is already in the book")
@@ -80,58 +80,6 @@ object MainStarter {
             } else if(choice == "9") {
                 // Calculate Calorie Density
             }
-        }
-    }
-
-    def addIngredient(): Ingredient = {
-        print("What ingredient (mix, baked, remeasure, single):> ")
-        var ingType = StdIn.readLine()
-        ingType = ingType.toLowerCase
-
-        if(ingType == "mix" || ingType == "m") {
-            print("Name:> ")
-            val name = StdIn.readLine().capitalize
-            val mix = Mix(name)
-            var more = ""
-            while(more != "n") {
-                val child = addIngredient()
-                mix.addIngredient(child)
-                print("Add another ingredient (y/n):> ")
-                more = StdIn.readLine()
-                more = more.toLowerCase
-            } 
-            println("Added mix")
-            mix
-        } else if(ingType == "baked" || ingType == "b") {
-            print("Name:> ")
-            val name = StdIn.readLine().capitalize
-            print("Expansion Factor:> ")
-            val expFac = StdIn.readLine().toDouble
-            val baked = Baked(name, expFac)
-            val child = addIngredient()
-            baked.addIngredient(child)
-            println("Added baked")
-            baked
-        } else if(ingType == "remeasure" || ingType == "r") {
-            print("New Quantity:> ")
-            val quantity = StdIn.readLine().toDouble
-            val remeasure = Remeasure(quantity)
-            val child = addIngredient()
-            remeasure.addIngredient(child)
-            println("Added remeasure")
-            remeasure
-        } else if(ingType == "single" || ingType == "s") {
-            print("Name:> ")
-            val name = StdIn.readLine().capitalize
-            print("Calories:> ")
-            val calories = StdIn.readLine().toDouble
-            print("Cups:> ")
-            var volume = StdIn.readLine().toDouble
-            println("Added single")
-            Single(name, calories, volume)
-        } else {
-            println("Ingredient format not found")
-            null
         }
     }
 }

@@ -124,9 +124,9 @@ object MainStarter {
             print("Name:> ")
             val name = StdIn.readLine().capitalize
             print("Calories:> ")
-            val calories = StdIn.readLine().toDouble.round
+            val calories = StdIn.readLine().toDouble
             print("Cups:> ")
-            var volume = StdIn.readLine().toDouble.round
+            var volume = StdIn.readLine().toDouble
             println("Added single")
             Single(name, calories, volume)
         } else {

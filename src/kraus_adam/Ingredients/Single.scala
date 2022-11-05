@@ -15,8 +15,8 @@ class Single(name: String, calories: Double, volume: Double) extends Ingredient(
 
     def getInfo(depth: Int): String = {
         s"${spaces * depth}______${name}______\n" +
-          s"${spaces * depth}Cups: ${format.format(volume)}\n" +
-          s"${spaces * depth}Calories: ${format.format(calories)}\n"
+          s"${spaces * depth}Cups: ${format.format(volume.round)}\n" +
+          s"${spaces * depth}Calories: ${format.format(calories.round)}\n"
     }
 }
 

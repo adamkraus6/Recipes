@@ -12,8 +12,19 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
     def writeXML(): Elem = {
         XMLHelper.makeNode(Mix.TAG)
     }
+
+    def getInfo(depth: Int): String = {
+        s"${spaces * depth}${name}\n" +
+          s"${spaces * depth}*****************************\n" +
+          subIngredients.map(x => x.getInfo(depth+1)).mkString("\n") +
+          s"${spaces * depth}*****************************\n"
+    }
 }
 
 object Mix {
     val TAG = "mix"
+
+    def apply(name: String): Mix = {
+        new Mix(name)
+    }
 }

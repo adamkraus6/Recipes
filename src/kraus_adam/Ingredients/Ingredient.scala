@@ -16,7 +16,7 @@ abstract class Ingredient(name: String) {
 
         if(ingType == "mix" || ingType == "m") {
             print("Name:> ")
-            val name = StdIn.readLine().capitalize
+            val name = StdIn.readLine().toLowerCase
             val mix = Mix(name)
             var more = ""
             while(more != "n") {
@@ -29,7 +29,7 @@ abstract class Ingredient(name: String) {
             subIngredients += mix
         } else if(ingType == "baked" || ingType == "b") {
             print("Name:> ")
-            val name = StdIn.readLine().capitalize
+            val name = StdIn.readLine().toLowerCase
             print("Expansion Factor:> ")
             val expFac = StdIn.readLine().toDouble
             val baked = Baked(name, expFac)
@@ -45,7 +45,7 @@ abstract class Ingredient(name: String) {
             subIngredients += remeasure
         } else if(ingType == "single" || ingType == "s") {
             print("Name:> ")
-            val name = StdIn.readLine().capitalize
+            val name = StdIn.readLine().toLowerCase
             print("Calories:> ")
             val calories = StdIn.readLine().toDouble
             print("Cups:> ")

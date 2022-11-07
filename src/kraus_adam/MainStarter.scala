@@ -41,7 +41,7 @@ object MainStarter {
             if(choice == "1") {
                 // Add Data
                 print("What recipe:> ")
-                val name = StdIn.readLine().capitalize
+                val name = StdIn.readLine().toLowerCase
                 if(!recipes.find(name)) {
                     val recipe = Recipe(name)
                     // GRADING: ADD
@@ -55,6 +55,14 @@ object MainStarter {
                 print(recipes.toString)
             } else if(choice == "3") {
                 // Remove Recipe
+                print("What recipe:> ")
+                val name = StdIn.readLine().toLowerCase
+                val removed = recipes.remove(name)
+                if(removed) {
+                    println("removed " + name)
+                } else {
+                    println("recipe not found")
+                }
             } else if(choice == "4") {
                 // Load XML
                 print("File name: ")

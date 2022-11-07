@@ -14,7 +14,7 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
     }
 
     def getInfo(depth: Int): String = {
-        s"${spaces * depth}${name} (${expansionFactor})\n" +
+        s"${spaces * depth}${name.capitalize} (${expansionFactor})\n" +
           subIngredients.map(x => x.getInfo(depth+1)).mkString("\n")
     }
 }

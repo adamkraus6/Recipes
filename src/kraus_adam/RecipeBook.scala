@@ -2,6 +2,7 @@ package kraus_adam
 
 import scala.xml.*
 import scala.collection.mutable.ListBuffer
+import scala.util.control.Breaks._
 
 class RecipeBook() {
     private var recipes: ListBuffer[Recipe] = ListBuffer[Recipe]()
@@ -31,6 +32,16 @@ class RecipeBook() {
             }
         }
 
+        false
+    }
+
+    def remove(name: String): Boolean = {
+        for (i <- 0 to recipes.length-1) {
+            if (recipes(i).getName == name) {
+                recipes.remove(i)
+                return true
+            }
+        }
         false
     }
 

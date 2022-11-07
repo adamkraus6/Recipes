@@ -14,7 +14,7 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
     }
 
     def getInfo(depth: Int): String = {
-        s"${spaces * depth}${name}\n" +
+        s"${spaces * depth}${name.capitalize}\n" +
           s"${spaces * depth}*****************************\n" +
           subIngredients.map(x => x.getInfo(depth+1)).mkString("\n") +
           s"${spaces * depth}*****************************\n"

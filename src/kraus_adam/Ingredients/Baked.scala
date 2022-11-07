@@ -13,7 +13,7 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
 
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("expansion", expansionFactor.toString), ("name", name))
-        val child = subIngredients(i).writeXML()
+        val child = subIngredients.map(i => i.writeXML())
         XMLHelper.makeNode(Baked.TAG, attr, child)
     }
 

@@ -23,7 +23,7 @@ class RecipeBook() extends XMLReadWrite {
 
     def writeXML(): Elem = {
         val children = recipes.map(r => r.writeXML())
-        XMLHelper.makeNode(Baked.TAG, null, children)
+        XMLHelper.makeNode(RecipeBook.TAG, null, children)
     }
 
     def addRecipe(recipe: Recipe) = {

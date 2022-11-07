@@ -1,8 +1,8 @@
 package kraus_adam
 
 import kraus_adam.Ingredients.*
-
 import scala.xml.*
+import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.io.StdIn
 
@@ -16,7 +16,7 @@ class Recipe(name: String) extends XMLReadWrite {
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("name", name))
         val child = ingredients.map(i => i.writeXML())
-        XMLHelper.makeNode(Recipe.TAG)
+        XMLHelper.makeNode(Recipe.TAG, attr, child)
     }
 
     def addIngredient(): Unit = {

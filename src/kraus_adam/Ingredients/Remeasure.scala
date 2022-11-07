@@ -2,6 +2,7 @@ package kraus_adam.Ingredients
 
 import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
+import scala.collection.mutable
 
 import scala.collection.mutable.ListBuffer
 import scala.xml.*
@@ -13,7 +14,7 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
 
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("quantity", quantity.toString))
-        val child = subIngredients(i).writeXML()
+        val child = subIngredients.map(i => i.writeXML())
         XMLHelper.makeNode(Remeasure.TAG, attr, child)
     }
 

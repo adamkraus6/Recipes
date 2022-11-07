@@ -3,6 +3,7 @@ package kraus_adam.Ingredients
 import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
 import scala.xml.*
+import scala.collection.mutable
 
 class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
     def loadXML(node: Node): Unit = {

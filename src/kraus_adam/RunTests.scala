@@ -16,7 +16,7 @@ object RunTests {
     val CHECK_RIGHT_SPACING = false
     val CHECK_NEW_LINE = false
     val MAX_ERROR_LINES = 5
-    val CLEAN_UP = true
+    val CLEAN_UP = false
     val INPUT_PATTERN = ":>"
     val DEFAULT_COLOR: ColorText.Color.Value = ColorText.Color.BLACK
     val PASSED_COLOR: ColorText.Color.Value = ColorText.Color.GREEN

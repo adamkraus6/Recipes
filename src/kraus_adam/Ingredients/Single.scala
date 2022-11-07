@@ -7,7 +7,7 @@ import scala.xml.*
 
 class Single(name: String, calories: Double, cups: Double) extends Ingredient(name: String) with XMLReadWrite {
     def loadXML(node: Node): Unit = {
-
+        
     }
 
     def writeXML(): Elem = {

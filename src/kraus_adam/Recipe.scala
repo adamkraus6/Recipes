@@ -10,7 +10,35 @@ class Recipe(name: String) extends XMLReadWrite {
     private val ingredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
 
     def loadXML(node: Node): Unit = {
-        
+        val children = node.child
+        for(child <- children) {
+            val tag = child.label
+            tag match {
+                case Mix.TAG =>
+                    val name = child.attribute("name").get.toString
+                    val mix = Mix(name)
+                    mix.loadXML(child)
+                    ingredients += mix
+                case Baked.TAG =>
+                    val name = child.attribute("name").getOrElse("").toString
+                    val expFac = child.attribute("expansion").getOrElse("1").toString.toDouble
+                    val baked = Baked(name, expFac)
+                    baked.loadXML(child)
+                    ingredients += baked
+                case Remeasure.TAG =>
+                    val quantity = child.attribute("quantity").get.toString.toDouble
+                    val remeasure = Remeasure(quantity)
+                    remeasure.loadXML(child)
+                    ingredients += remeasure
+                case Single.TAG =>
+                    val name = child.text
+                    val cups = child.attribute("cups").getOrElse("1").toString.toDouble
+                    val calories = child.attribute("calories").getOrElse("100").toString.toDouble
+                    val single = Single(name, calories, cups)
+                    ingredients += single
+                case _ =>
+            }
+        }
     }
 
     def writeXML(): Elem = {
@@ -26,7 +54,7 @@ class Recipe(name: String) extends XMLReadWrite {
 
         if (ingType == "mix" || ingType == "m") {
             print("Name:> ")
-            val name = StdIn.readLine().capitalize
+            val name = StdIn.readLine()
             val mix = Mix(name)
             var more = ""
             while (more != "n") {
@@ -39,7 +67,7 @@ class Recipe(name: String) extends XMLReadWrite {
             ingredients += mix
         } else if (ingType == "baked" || ingType == "b") {
             print("Name:> ")
-            val name = StdIn.readLine().capitalize
+            val name = StdIn.readLine()
             print("Expansion Factor:> ")
             val expFac = StdIn.readLine().toDouble
             val baked = Baked(name, expFac)
@@ -55,7 +83,7 @@ class Recipe(name: String) extends XMLReadWrite {
             ingredients += remeasure
         } else if (ingType == "single" || ingType == "s") {
             print("Name:> ")
-            val name = StdIn.readLine().capitalize
+            val name = StdIn.readLine()
             print("Calories:> ")
             val calories = StdIn.readLine().toDouble
             print("Cups:> ")

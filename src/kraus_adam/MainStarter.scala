@@ -66,22 +66,22 @@ object MainStarter {
                 }
             } else if(choice == "4") {
                 // Load XML
-                // print("File name:> ")
-                // val fileName = StdIn.readLine()
-                // try {
-                //     val topNode = XML.loadFile(fileName)
-                //     if (topNode.label != RecipeBook.TAG) {
-                //         print("Invalid XML file. Needs to be a recipe XML file")
-                //     } else {
-                //         recipes.loadXML(topNode)
-                //     }
-                // } catch {
-                //     case e: FileNotFoundException => println(s"Could not open file: ${e.getMessage}")
-                // }
+                print("File name:> ")
+                val fileName = StdIn.readLine()
+                try {
+                    val topNode = XML.loadFile(fileName)
+                    if (topNode.label != RecipeBook.TAG) {
+                        println("Invalid XML file. Needs to be an recipebook XML file")
+                    } else {
+                        recipes.loadXML(topNode)
+                    }
+                } catch {
+                    case e: FileNotFoundException => println(s"Could not open file: ${e.getMessage}")
+                }
             } else if(choice == "5") {
                 // Write XML
                 print("File name:> ")
-                val fileName = StdIn.readLine().toLowerCase
+                val fileName = StdIn.readLine()
                 val recipesXML = recipes.writeXML()
                 val prettyPrinter = new PrettyPrinter(80, 3)
                 val prettyXML = prettyPrinter.format(recipesXML)

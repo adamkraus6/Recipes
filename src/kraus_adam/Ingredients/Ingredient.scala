@@ -6,7 +6,7 @@ import java.text.DecimalFormat
 import scala.collection.mutable.ListBuffer
 import scala.io.StdIn
 
-abstract class Ingredient(name: String) extends XMLReadWrite {
+abstract class Ingredient(val name: String) extends XMLReadWrite {
     protected val subIngredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
     protected val spaces = "  "
     protected val format = new DecimalFormat("0.#")

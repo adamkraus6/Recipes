@@ -79,6 +79,8 @@ object MainStarter {
                 }
             } else if(choice == "5") {
                 // Write XML
+                print("File name: ")
+                val fileName = StdIn.readLine()
             } else if(choice == "6") {
                 // Find Ingredient in Recipe
             } else if(choice == "7") {

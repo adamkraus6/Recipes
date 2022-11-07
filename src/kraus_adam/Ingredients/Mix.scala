@@ -10,7 +10,9 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
     }
 
     def writeXML(): Elem = {
-        XMLHelper.makeNode(Mix.TAG)
+        val attr: mutable.HashMap[String, String] = mutable.HashMap(("name", name))
+        val children = subIngredients.map(i => i.writeXML())
+        XMLHelper.makeNode(Mix.TAG, attr, children)
     }
 
     def getInfo(depth: Int): String = {

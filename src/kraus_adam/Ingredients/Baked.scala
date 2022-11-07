@@ -2,6 +2,8 @@ package kraus_adam.Ingredients
 
 import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
+
+import scala.collection.mutable
 import scala.xml.*
 
 class Baked(name: String, expansionFactor: Double) extends Ingredient(name: String) with XMLReadWrite {
@@ -10,7 +12,9 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
     }
 
     def writeXML(): Elem = {
-        XMLHelper.makeNode(Baked.TAG)
+        val attr: mutable.HashMap[String, String] = mutable.HashMap(("expansion", expansionFactor.toString), ("name", name))
+        val child = subIngredients(i).writeXML()
+        XMLHelper.makeNode(Baked.TAG, attr, child)
     }
 
     def getInfo(depth: Int): String = {

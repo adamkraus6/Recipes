@@ -4,7 +4,7 @@ import scala.xml.*
 import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks._
 
-class RecipeBook() {
+class RecipeBook() extends XMLReadWrite {
     private var recipes: ListBuffer[Recipe] = ListBuffer[Recipe]()
 
     def loadXML(node: Node): Unit = {
@@ -19,6 +19,11 @@ class RecipeBook() {
                 case _ =>
             }
         }
+    }
+
+    def writeXML(): Elem = {
+        val children = recipes.map(r => r.writeXML())
+        XMLHelper.makeNode(Baked.TAG, null, children)
     }
 
     def addRecipe(recipe: Recipe) = {

@@ -12,7 +12,9 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
     }
 
     def writeXML(): Elem = {
-        XMLHelper.makeNode(Remeasure.TAG)
+        val attr: mutable.HashMap[String, String] = mutable.HashMap(("quantity", quantity.toString))
+        val child = subIngredients(i).writeXML()
+        XMLHelper.makeNode(Remeasure.TAG, attr, child)
     }
 
     def getInfo(depth: Int): String = {

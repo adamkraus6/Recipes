@@ -1,10 +1,12 @@
 package kraus_adam.Ingredients
 
+import kraus_adam.XMLReadWrite
+
 import java.text.DecimalFormat
 import scala.collection.mutable.ListBuffer
 import scala.io.StdIn
 
-abstract class Ingredient(name: String) {
+abstract class Ingredient(name: String) extends XMLReadWrite {
     protected val subIngredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
     protected val spaces = "  "
     protected val format = new DecimalFormat("0.#")
@@ -49,9 +51,9 @@ abstract class Ingredient(name: String) {
             print("Calories:> ")
             val calories = StdIn.readLine().toDouble
             print("Cups:> ")
-            var volume = StdIn.readLine().toDouble
+            var cups = StdIn.readLine().toDouble
             println("Added single")
-            subIngredients += Single(name, calories, volume)
+            subIngredients += Single(name, calories, cups)
         } else {
             println("Ingredient format not found")
             null

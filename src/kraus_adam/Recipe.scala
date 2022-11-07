@@ -14,6 +14,8 @@ class Recipe(name: String) extends XMLReadWrite {
     }
 
     def writeXML(): Elem = {
+        val attr: mutable.HashMap[String, String] = mutable.HashMap(("name", name))
+        val child = ingredients.map(i => i.writeXML())
         XMLHelper.makeNode(Recipe.TAG)
     }
 

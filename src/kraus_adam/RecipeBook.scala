@@ -1,8 +1,9 @@
 package kraus_adam
 
+import java.text.DecimalFormat
 import scala.xml.*
 import scala.collection.mutable.ListBuffer
-import scala.util.control.Breaks._
+import scala.util.control.Breaks.*
 
 class RecipeBook() extends XMLReadWrite {
     private var recipes: ListBuffer[Recipe] = ListBuffer[Recipe]()
@@ -60,7 +61,7 @@ class RecipeBook() extends XMLReadWrite {
 
         0
     }
-    
+
     def calcVol(name: String): Double = {
         for (recipe <- recipes) {
             if (recipe.getName == name) {
@@ -79,6 +80,13 @@ class RecipeBook() extends XMLReadWrite {
             }
         }
         false
+    }
+
+    def printDensity(): Unit = {
+        val format = new DecimalFormat("0.0")
+        for(recipe <- recipes) {
+            println(recipe.getName + ": " + format.format(recipe.calcDensity()))
+        }
     }
 
     override def toString: String = {

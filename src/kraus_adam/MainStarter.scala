@@ -35,18 +35,18 @@ First item found and output formatted correctly	                DONE
 Handles “not found case”						                DONE
 
 5A.	Calculate calories*	7
-Correct with no remeasuring		                                ______
-Correct with remeasuring		                                ______
-Parallelized* 					                                ______
+Correct with no remeasuring		                                DONE
+Correct with remeasuring		                                DONE
+Parallelized* 					                                TAGGED
 
-5B.  Calculate volume 7						                    ______
-Correct with no remeasuring or baking		                    ______
-Correct with remeasuring and baking 		                    ______
-Parallelized* 								                    ______
+5B.  Calculate volume 7
+Correct with no remeasuring or baking		                    DONE
+Correct with remeasuring and baking 		                    DONE
+Parallelized* 								                    TAGGED
 
 6. Calculate density count 6				                    ______
 
-Every Line with a * has its grading tag:                        ______
+Every Line with a * has its grading tag:                        DONE
 
 */
 package kraus_adam
@@ -162,6 +162,7 @@ object MainStarter {
                 println("Volume in cups: " + format.format(cups))
             } else if(choice == "9") {
                 // Calculate Calorie Density
+                recipes.printDensity()
             }
         }
     }

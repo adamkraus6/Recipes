@@ -118,6 +118,10 @@ class Recipe(name: String) extends XMLReadWrite {
         ingredients(0).getVol()
     }
 
+    def calcDensity(): Double = {
+        calcCal() / calcVol()
+    }
+
     override def toString: String = {
         s"""
           |Recipe: ${this.name}

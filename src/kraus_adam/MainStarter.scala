@@ -144,14 +144,22 @@ object MainStarter {
                 write.close()
             } else if(choice == "6") {
                 // Find Ingredient in Recipe
-                print("recipe:> ")
+                print("Recipe:> ")
                 val name = StdIn.readLine().toLowerCase
                 // GRADING: FIND
                 recipes.findIngredient(name)
             } else if(choice == "7") {
                 // Calculate Calories
+                print("What recipe:> ")
+                val name = StdIn.readLine().toLowerCase
+                val calories = recipes.calcCal(name)
+                println("Calorie Count: " + format.format(calories))
             } else if(choice == "8") {
                 // Calculate Volume
+                print("What recipe:> ")
+                val name = StdIn.readLine().toLowerCase
+                val cups = recipes.calcVol(name)
+                println("Volume in cups: " + format.format(cups))
             } else if(choice == "9") {
                 // Calculate Calorie Density
             }

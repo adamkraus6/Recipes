@@ -98,7 +98,7 @@ class Recipe(name: String) extends XMLReadWrite {
     def findIngredient(name: String): Boolean = {
         if(this.name == name)
             return true
-            
+
         for(ing <- ingredients)
             if(ing.findIngredient(name))
                 return true
@@ -108,6 +108,14 @@ class Recipe(name: String) extends XMLReadWrite {
     
     def getName: String = {
         this.name
+    }
+
+    def calcCal(): Double = {
+        ingredients(0).getCal()
+    }
+    
+    def calcVol(): Double = {
+        ingredients(0).getVol()
     }
 
     override def toString: String = {

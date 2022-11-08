@@ -50,11 +50,18 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
         if (this.name == name)
             return true
 
-        for (ing <- subIngredients)
-            if (ing.findIngredient(name))
-                return true
+        if (subIngredients(0).findIngredient(name))
+            return true
 
         false
+    }
+
+    def getCal(): Double = {
+        quantity * subIngredients(0).getCal()
+    }
+
+    def getVol(): Double = {
+        quantity * subIngredients(0).getVol()
     }
 
     def getInfo(depth: Int): String = {

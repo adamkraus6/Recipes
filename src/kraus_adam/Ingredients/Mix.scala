@@ -4,6 +4,7 @@ import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
 import scala.xml.*
 import scala.collection.mutable
+import scala.collection.parallel.CollectionConverters._
 
 class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
     def loadXML(node: Node): Unit = {
@@ -53,6 +54,18 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
                 return true
 
         false
+    }
+
+    def getCal(): Double = {
+        // GRADING: PARALLEL
+        val parallelList = subIngredients.par
+        parallelList.map(i => i.getCal()).sum
+    }
+
+    def getVol(): Double = {
+        // Parallel here as well
+        val parallelList = subIngredients.par
+        parallelList.map(i => i.getVol()).sum
     }
 
     def getInfo(depth: Int): String = {

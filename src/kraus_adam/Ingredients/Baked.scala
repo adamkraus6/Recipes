@@ -57,11 +57,18 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
             return true
         }
 
-        for (ing <- subIngredients)
-            if (ing.findIngredient(name))
-                return true
+        if (subIngredients(0).findIngredient(name))
+            return true
 
         false
+    }
+
+    def getCal(): Double = {
+        subIngredients(0).getCal()
+    }
+
+    def getVol(): Double = {
+        expansionFactor * subIngredients(0).getVol()
     }
 
     def getInfo(depth: Int): String = {

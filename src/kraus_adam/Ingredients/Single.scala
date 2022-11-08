@@ -19,8 +19,16 @@ class Single(name: String, calories: Double, cups: Double) extends Ingredient(na
     def findIngredient(name: String): Boolean = {
         if(this.name == name)
             return true
-            
+
         false
+    }
+
+    def getCal(): Double = {
+        calories
+    }
+
+    def getVol(): Double = {
+        cups
     }
 
     def getInfo(depth: Int): String = {

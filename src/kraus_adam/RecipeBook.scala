@@ -51,6 +51,26 @@ class RecipeBook() extends XMLReadWrite {
         println(name + " not found")
     }
 
+    def calcCal(name: String): Double = {
+        for(recipe <- recipes) {
+            if(recipe.getName == name) {
+                return recipe.calcCal()
+            }
+        }
+
+        0
+    }
+    
+    def calcVol(name: String): Double = {
+        for (recipe <- recipes) {
+            if (recipe.getName == name) {
+                return recipe.calcVol()
+            }
+        }
+
+        0
+    }
+
     def remove(name: String): Boolean = {
         for (i <- 0 to recipes.length-1) {
             if (recipes(i).getName == name) {

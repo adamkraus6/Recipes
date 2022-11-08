@@ -30,7 +30,7 @@ class RecipeBook() extends XMLReadWrite {
         recipes += recipe
     }
 
-    def find(name: String): Boolean = {
+    def findRecipe(name: String): Boolean = {
         for(recipe <- recipes) {
             if(recipe.getName == name) {
                 return true
@@ -38,6 +38,17 @@ class RecipeBook() extends XMLReadWrite {
         }
 
         false
+    }
+
+    def findIngredient(name: String): Unit = {
+        for(recipe <- recipes) {
+            if(recipe.findIngredient(name)) {
+                println(name + " found in " + recipe.getName)
+                return
+            }
+        }
+
+        println(name + " not found")
     }
 
     def remove(name: String): Boolean = {

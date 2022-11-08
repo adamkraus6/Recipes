@@ -1,3 +1,54 @@
+/*
+0. Got it running						                        DONE
+1.	Add + Display*	36                                          TAGGED
+Prompts correct 						                        DONE
+Adds each item 						 	                        DONE
+Above displays correctly formatted 		                        DONE
+
+2A) Remove + Display*	10                                      TAGGED
+Prompts correct							                        DONE
+Removes and displays correctly 			                        DONE
+
+2B) Add + XML save*	14                                          TAGGED
+Console added items saved correctly 		                    DONE
+Console added multiples is saved correctly 	                    DONE
+
+2C) XML load + XML save*	14                                  TAGGED
+1 XML file loaded and saved correctly 	                        DONE
+2+ XML file loaded and saved correctly	                        DONE
+
+2D) XML load + Display*	12                                      TAGGED
+1 XML file loaded and displays correctly 	                    DONE
+2+ XML file loaded and displays correctly	                    DONE
+
+2E) XML+ Display with bad file handing	10
+All errors handled 							                    DONE
+
+3.	Stress test for above*	12                                  TAGGED
+Loads in file, adds data, and displays/saves correctly			DONE
+Appends a file and displays/saves correctly 					DONE
+Removes ingredient after edits, and displays/saves correctly    DONE
+
+4. Find ingredient*	16                                          TAGGED
+CoR format at least there						                DONE
+First item found and output formatted correctly	                DONE
+Handles “not found case”						                DONE
+
+5A.	Calculate calories*	7
+Correct with no remeasuring		                                ______
+Correct with remeasuring		                                ______
+Parallelized* 					                                ______
+
+5B.  Calculate volume 7						                    ______
+Correct with no remeasuring or baking		                    ______
+Correct with remeasuring and baking 		                    ______
+Parallelized* 								                    ______
+
+6. Calculate density count 6				                    ______
+
+Every Line with a * has its grading tag:                        ______
+
+*/
 package kraus_adam
 
 import kraus_adam.Ingredients.*
@@ -43,7 +94,7 @@ object MainStarter {
                 // Add Data
                 print("What recipe:> ")
                 val name = StdIn.readLine().toLowerCase
-                if(!recipes.find(name)) {
+                if(!recipes.findRecipe(name)) {
                     val recipe = Recipe(name)
                     // GRADING: ADD
                     recipe.addIngredient()
@@ -53,6 +104,7 @@ object MainStarter {
                 }
             } else if(choice == "2") {
                 // Display Data
+                // GRADING: PRINT
                 print(recipes.toString)
             } else if(choice == "3") {
                 // Remove Recipe
@@ -73,6 +125,7 @@ object MainStarter {
                     if (topNode.label != RecipeBook.TAG) {
                         println("Invalid XML file. Needs to be an recipebook XML file")
                     } else {
+                        // GRADING: READ
                         recipes.loadXML(topNode)
                     }
                 } catch {
@@ -82,6 +135,7 @@ object MainStarter {
                 // Write XML
                 print("File name:> ")
                 val fileName = StdIn.readLine()
+                // GRADING: WRITE
                 val recipesXML = recipes.writeXML()
                 val prettyPrinter = new PrettyPrinter(80, 3)
                 val prettyXML = prettyPrinter.format(recipesXML)
@@ -90,6 +144,10 @@ object MainStarter {
                 write.close()
             } else if(choice == "6") {
                 // Find Ingredient in Recipe
+                print("recipe:> ")
+                val name = StdIn.readLine().toLowerCase
+                // GRADING: FIND
+                recipes.findIngredient(name)
             } else if(choice == "7") {
                 // Calculate Calories
             } else if(choice == "8") {

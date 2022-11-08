@@ -60,5 +60,7 @@ abstract class Ingredient(val name: String) extends XMLReadWrite {
         }
     }
 
+    def findIngredient(name: String): Boolean
+
     def getInfo(depth: Int): String
 }

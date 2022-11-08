@@ -48,6 +48,22 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
         XMLHelper.makeNode(Baked.TAG, attr, child)
     }
 
+    def findIngredient(name: String): Boolean = {
+        if (this.name.isEmpty) {
+            val subName = subIngredients(0).name
+            if(name == ("baked " + subName))
+                return true
+        } else if(this.name == name) {
+            return true
+        }
+
+        for (ing <- subIngredients)
+            if (ing.findIngredient(name))
+                return true
+
+        false
+    }
+
     def getInfo(depth: Int): String = {
         if(name.isEmpty) {
             s"${spaces * depth}baked ${subIngredients(0).name} (${expansionFactor})\n" +

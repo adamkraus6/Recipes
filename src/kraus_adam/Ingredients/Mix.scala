@@ -44,6 +44,17 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
         XMLHelper.makeNode(Mix.TAG, attr, children)
     }
 
+    def findIngredient(name: String): Boolean = {
+        if (this.name == name)
+            return true
+
+        for (ing <- subIngredients)
+            if (ing.findIngredient(name))
+                return true
+
+        false
+    }
+
     def getInfo(depth: Int): String = {
         s"${spaces * depth}${name.capitalize}\n" +
           s"${spaces * depth}*****************************\n" +

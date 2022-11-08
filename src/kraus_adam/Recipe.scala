@@ -94,6 +94,17 @@ class Recipe(name: String) extends XMLReadWrite {
             println("Ingredient format not found")
         }
     }
+
+    def findIngredient(name: String): Boolean = {
+        if(this.name == name)
+            return true
+            
+        for(ing <- ingredients)
+            if(ing.findIngredient(name))
+                return true
+
+        false
+    }
     
     def getName: String = {
         this.name

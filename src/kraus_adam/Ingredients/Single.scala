@@ -16,6 +16,13 @@ class Single(name: String, calories: Double, cups: Double) extends Ingredient(na
         XMLHelper.makeNode(Single.TAG, attr, text)
     }
 
+    def findIngredient(name: String): Boolean = {
+        if(this.name == name)
+            return true
+            
+        false
+    }
+
     def getInfo(depth: Int): String = {
         s"${spaces * depth}______${name.capitalize}______\n" +
           s"${spaces * depth}Cups: ${format.format(cups.round)}\n" +

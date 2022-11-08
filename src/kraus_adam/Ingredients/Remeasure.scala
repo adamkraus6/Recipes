@@ -46,6 +46,17 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
         XMLHelper.makeNode(Remeasure.TAG, attr, child)
     }
 
+    def findIngredient(name: String): Boolean = {
+        if (this.name == name)
+            return true
+
+        for (ing <- subIngredients)
+            if (ing.findIngredient(name))
+                return true
+
+        false
+    }
+
     def getInfo(depth: Int): String = {
         s"${spaces * depth}Remeasure to ${quantity} cups\n" +
           subIngredients.map(x => x.getInfo(depth+1)).mkString("\n")

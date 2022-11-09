@@ -1,12 +1,20 @@
 package kraus_adam.Ingredients
 
-import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
-import scala.xml.*
+import kraus_adam.XMLReadWrite
 import scala.collection.mutable
-import scala.collection.parallel.CollectionConverters._
+import scala.collection.parallel.CollectionConverters.*
+import scala.xml.*
 
+
+/*
+Mix of many sub ingredients
+*/
 class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
+    /*
+    Loads information from an XML node into class
+    param node: XML node
+    */
     def loadXML(node: Node): Unit = {
         val children = node.child
         for (child <- children) {
@@ -39,6 +47,10 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
         }
     }
 
+    /*
+    Writes class info into XML
+    return: XML Element
+    */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("name", name))
         val children = subIngredients.map(i => i.writeXML())
@@ -56,18 +68,31 @@ class Mix(name: String) extends Ingredient(name: String) with XMLReadWrite {
         false
     }
 
-    def getCal(): Double = {
+    /*
+    Gets ingredient calories
+    return: calories
+    */
+    def getCal: Double = {
         // GRADING: PARALLEL
         val parallelList = subIngredients.par
-        parallelList.map(i => i.getCal()).sum
+        parallelList.map(i => i.getCal).sum
     }
 
-    def getVol(): Double = {
+    /*
+    Gets ingredient volume
+    return: volume
+    */
+    def getVol: Double = {
         // Parallel here as well
         val parallelList = subIngredients.par
-        parallelList.map(i => i.getVol()).sum
+        parallelList.map(i => i.getVol).sum
     }
 
+    /*
+    Gets ingredient information
+    param depth: depth to align text
+    return: formatted string
+    */
     def getInfo(depth: Int): String = {
         s"${spaces * depth}${name.capitalize}\n" +
           s"${spaces * depth}*****************************\n" +

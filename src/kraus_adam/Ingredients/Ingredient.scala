@@ -1,16 +1,21 @@
 package kraus_adam.Ingredients
 
-import kraus_adam.XMLReadWrite
-
 import java.text.DecimalFormat
+import kraus_adam.XMLReadWrite
 import scala.collection.mutable.ListBuffer
 import scala.io.StdIn
 
+/*
+Parent ingredient class
+*/
 abstract class Ingredient(val name: String) extends XMLReadWrite {
     protected val subIngredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
     protected val spaces = "  "
     protected val format = new DecimalFormat("0.#")
     
+    /*
+    Adds an ingredient to recipe/another ingredient
+    */
     def addIngredient(): Unit = {
         print("What ingredient (mix, baked, remeasure, single):> ")
         var ingType = StdIn.readLine()
@@ -51,20 +56,36 @@ abstract class Ingredient(val name: String) extends XMLReadWrite {
             print("Calories:> ")
             val calories = StdIn.readLine().toDouble
             print("Cups:> ")
-            var cups = StdIn.readLine().toDouble
+            val cups = StdIn.readLine().toDouble
             println("Added single")
             subIngredients += Single(name, calories, cups)
         } else {
             println("Ingredient format not found")
-            null
         }
     }
 
+    /*
+    Searches subIngredient(s) for ingredient
+    return: true if found
+    */
     def findIngredient(name: String): Boolean
 
-    def getCal(): Double
+    /*
+    Gets ingredient calories
+    return: calories
+    */
+    def getCal: Double
     
-    def getVol(): Double
+    /*
+    Gets ingredient volume
+    return: volume
+    */
+    def getVol: Double
 
+    /*
+    Gets ingredient information
+    param depth: depth to align text
+    return: formatted string
+    */
     def getInfo(depth: Int): String
 }

@@ -1,7 +1,7 @@
 package kraus_adam
 
 import scala.collection.mutable
-import scala.xml._
+import scala.xml.*
 
 /**
   * Helper static class to simplify Scala's rather poor XML writing facilities.

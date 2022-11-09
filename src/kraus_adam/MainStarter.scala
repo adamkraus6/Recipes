@@ -1,4 +1,9 @@
 /*
+Recipes Program - Scala
+Adam Kraus
+Programming Languages - CSC426
+Due: 12/2/2022
+
 0. Got it running						                        DONE
 1.	Add + Display*	36                                          TAGGED
 Prompts correct 						                        DONE
@@ -44,19 +49,18 @@ Correct with no remeasuring or baking		                    DONE
 Correct with remeasuring and baking 		                    DONE
 Parallelized* 								                    TAGGED
 
-6. Calculate density count 6				                    ______
+6. Calculate density count 6				                    DONE
 
 Every Line with a * has its grading tag:                        DONE
 
 */
 package kraus_adam
 
-import kraus_adam.Ingredients.*
-
 import java.io.{FileNotFoundException, FileWriter}
 import java.text.DecimalFormat
+import kraus_adam.Ingredients.*
 import scala.io.StdIn
-import scala.xml.{PrettyPrinter, XML}
+import scala.xml.*
 
 object MainStarter {
     def main(args: Array[String]): Unit = {

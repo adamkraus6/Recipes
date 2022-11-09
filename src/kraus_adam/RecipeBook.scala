@@ -1,13 +1,17 @@
 package kraus_adam
 
 import java.text.DecimalFormat
-import scala.xml.*
 import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks.*
+import scala.xml.*
 
 class RecipeBook() extends XMLReadWrite {
     private var recipes: ListBuffer[Recipe] = ListBuffer[Recipe]()
 
+    /*
+    Loads information from an XML node into class
+    param node: XML node
+    */
     def loadXML(node: Node): Unit = {
         val children = node.child
         for(child <- children) {
@@ -22,6 +26,10 @@ class RecipeBook() extends XMLReadWrite {
         }
     }
 
+    /*
+    Writes class info into XML
+    return: XML Element
+    */
     def writeXML(): Elem = {
         val children = recipes.map(r => r.writeXML())
         XMLHelper.makeNode(RecipeBook.TAG, null, children)

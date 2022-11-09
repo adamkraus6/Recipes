@@ -1,13 +1,20 @@
 package kraus_adam.Ingredients
 
-import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
+import kraus_adam.XMLReadWrite
 import scala.collection.mutable
-
 import scala.collection.mutable.ListBuffer
 import scala.xml.*
 
+
+/*
+Remeasures sub ingredients
+*/
 class Remeasure(name: String, quantity: Double) extends Ingredient(name: String) with XMLReadWrite {
+    /*
+    Loads information from an XML node into class
+    param node: XML node
+    */
     def loadXML(node: Node): Unit = {
         val children = node.child
         for (child <- children) {
@@ -40,12 +47,20 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
         }
     }
 
+    /*
+    Writes class info into XML
+    return: XML Element
+    */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("quantity", quantity.toString))
         val child = subIngredients.map(i => i.writeXML())
         XMLHelper.makeNode(Remeasure.TAG, attr, child)
     }
 
+    /*
+    Searches subIngredient(s) for ingredient
+    return: true if found
+    */
     def findIngredient(name: String): Boolean = {
         if (this.name == name)
             return true
@@ -56,14 +71,27 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
         false
     }
 
-    def getCal(): Double = {
-        quantity * subIngredients(0).getCal()
+    /*
+    Gets ingredient calories
+    return: calories
+    */
+    def getCal: Double = {
+        quantity * subIngredients(0).getCal
     }
 
-    def getVol(): Double = {
-        quantity * subIngredients(0).getVol()
+    /*
+    Gets ingredient volume
+    return: volume
+    */
+    def getVol: Double = {
+        quantity * subIngredients(0).getVol
     }
 
+    /*
+    Gets ingredient information
+    param depth: depth to align text
+    return: formatted string
+    */
     def getInfo(depth: Int): String = {
         s"${spaces * depth}Remeasure to ${quantity} cups\n" +
           subIngredients.map(x => x.getInfo(depth+1)).mkString("\n")

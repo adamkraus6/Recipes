@@ -1,12 +1,21 @@
+/*
+
+*/
 package kraus_adam.Ingredients
 
-import kraus_adam.XMLReadWrite
 import kraus_adam.XMLHelper
-
+import kraus_adam.XMLReadWrite
 import scala.collection.mutable
 import scala.xml.*
 
+/*
+Baked ingredient that expands sub ingredient by a certain factor
+*/
 class Baked(name: String, expansionFactor: Double) extends Ingredient(name: String) with XMLReadWrite {
+    /*
+    Loads information from an XML node into class
+    param node: XML node
+    */
     def loadXML(node: Node): Unit = {
         val children = node.child
         for(child <- children) {
@@ -39,6 +48,10 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
         }
     }
 
+    /*
+    Writes class info into XML
+    return: XML Element
+    */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("expansion", expansionFactor.toString))
         if(!name.isEmpty) {
@@ -48,6 +61,10 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
         XMLHelper.makeNode(Baked.TAG, attr, child)
     }
 
+    /*
+    Searches subIngredient(s) for ingredient
+    return: true if found
+    */
     def findIngredient(name: String): Boolean = {
         if (this.name.isEmpty) {
             val subName = subIngredients(0).name
@@ -63,14 +80,27 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
         false
     }
 
-    def getCal(): Double = {
-        subIngredients(0).getCal()
+    /*
+    Gets ingredient calories
+    return: calories
+    */
+    def getCal: Double = {
+        subIngredients(0).getCal
     }
 
-    def getVol(): Double = {
-        expansionFactor * subIngredients(0).getVol()
+    /*
+    Gets ingredient volume
+    return: volume
+    */
+    def getVol: Double = {
+        expansionFactor * subIngredients(0).getVol
     }
 
+    /*
+    Gets ingredient information
+    param depth: depth to align text
+    return: formatted string
+    */
     def getInfo(depth: Int): String = {
         if(name.isEmpty) {
             s"${spaces * depth}baked ${subIngredients(0).name} (${expansionFactor})\n" +

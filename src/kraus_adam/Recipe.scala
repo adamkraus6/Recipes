@@ -1,14 +1,21 @@
 package kraus_adam
 
 import kraus_adam.Ingredients.*
-import scala.xml.*
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.io.StdIn
+import scala.xml.*
 
+/*
+Recipe class that holds ingredients
+*/
 class Recipe(name: String) extends XMLReadWrite {
     private val ingredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
 
+    /*
+    Loads information from an XML node into class
+    param node: XML node
+    */
     def loadXML(node: Node): Unit = {
         val children = node.child
         for(child <- children) {
@@ -41,6 +48,10 @@ class Recipe(name: String) extends XMLReadWrite {
         }
     }
 
+    /*
+    Writes class info into XML
+    return: XML Element
+    */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("name", name))
         val child = ingredients.map(i => i.writeXML())
@@ -111,11 +122,11 @@ class Recipe(name: String) extends XMLReadWrite {
     }
 
     def calcCal(): Double = {
-        ingredients(0).getCal()
+        ingredients(0).getCal
     }
     
     def calcVol(): Double = {
-        ingredients(0).getVol()
+        ingredients(0).getVol
     }
 
     def calcDensity(): Double = {

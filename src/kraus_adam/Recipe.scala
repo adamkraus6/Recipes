@@ -59,6 +59,7 @@ class Recipe(name: String) extends XMLReadWrite {
     }
 
     def addIngredient(): Unit = {
+        // TODO change to make each ingredient do their own prompting
         print("What ingredient (mix, baked, remeasure, single):> ")
         var ingType = StdIn.readLine()
         ingType = ingType.toLowerCase

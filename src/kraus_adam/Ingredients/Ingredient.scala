@@ -21,6 +21,7 @@ abstract class Ingredient(val name: String) extends XMLReadWrite {
         var ingType = StdIn.readLine()
         ingType = ingType.toLowerCase
 
+        // TODO change to make each ingredient do their own prompting
         if(ingType == "mix" || ingType == "m") {
             print("Name:> ")
             val name = StdIn.readLine().toLowerCase

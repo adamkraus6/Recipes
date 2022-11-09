@@ -4,17 +4,22 @@ import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
 import scala.collection.mutable
 import scala.xml.*
+import scala.io.StdIn
 
 /*
 Basic single ingredient with calories and volume
 */
-class Single(name: String, calories: Double, cups: Double) extends Ingredient(name: String) with XMLReadWrite {
+class Single() extends Ingredient() with XMLReadWrite {
+    protected var calories: Double = 0
+    protected var cups: Double = 0
     /*
     Loads information from an XML node into class
     param node: XML node
     */
     def loadXML(node: Node): Unit = {
-        // not used, Single has no child nodes  
+        name = node.text
+        calories = node.attribute("calories").getOrElse("100").toString.toDouble
+        cups = node.attribute("cups").getOrElse("1").toString.toDouble
     }
 
     /*
@@ -23,8 +28,17 @@ class Single(name: String, calories: Double, cups: Double) extends Ingredient(na
     */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("calories", calories.toString), ("cups", cups.toString))
-        val text = Text(name)
+        val text = Text(this.name)
         XMLHelper.makeNode(Single.TAG, attr, text)
+    }
+
+    def addIngredient(): Unit = {
+        print("Name:> ")
+        this.name = StdIn.readLine().toLowerCase
+        print("Calories:> ")
+        calories = StdIn.readLine().toDouble
+        print("Cups:> ")
+        cups = StdIn.readLine().toDouble
     }
 
     /*
@@ -69,7 +83,7 @@ class Single(name: String, calories: Double, cups: Double) extends Ingredient(na
 object Single {
     val TAG = "single"
 
-    def apply(name: String, calories: Double, volume: Double): Single = {
-        new Single(name, calories, volume)
+    def apply(): Single = {
+        new Single()
     }
 }

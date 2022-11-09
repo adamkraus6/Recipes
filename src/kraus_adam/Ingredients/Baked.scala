@@ -5,43 +5,43 @@ package kraus_adam.Ingredients
 
 import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
+
 import scala.collection.mutable
+import scala.io.StdIn
 import scala.xml.*
 
 /*
 Baked ingredient that expands sub ingredient by a certain factor
 */
-class Baked(name: String, expansionFactor: Double) extends Ingredient(name: String) with XMLReadWrite {
+class Baked() extends Ingredient() with XMLReadWrite {
+    private var expansionFactor: Double = 0
     /*
     Loads information from an XML node into class
     param node: XML node
     */
     def loadXML(node: Node): Unit = {
+        name = node.attribute("name").getOrElse("").toString
+        expansionFactor = node.attribute("expansion").getOrElse("1").toString.toDouble
+
         val children = node.child
         for(child <- children) {
             val tag = child.label
             tag match {
                 case Mix.TAG =>
-                    val name = child.attribute("name").getOrElse("").toString
-                    val mix = Mix(name)
+                    val mix = Mix()
                     mix.loadXML(child)
                     subIngredients += mix
                 case Baked.TAG =>
-                    val name = child.attribute("name").getOrElse("").toString
-                    val expFac = child.attribute("expansion").getOrElse("1").toString.toDouble
-                    val baked = Baked(name, expFac)
+                    val baked = Baked()
                     baked.loadXML(child)
                     subIngredients += baked
                 case Remeasure.TAG =>
-                    val quantity = child.attribute("quantity").getOrElse("1").toString.toDouble
-                    val remeasure = Remeasure(quantity)
+                    val remeasure = Remeasure()
                     remeasure.loadXML(child)
                     subIngredients += remeasure
                 case Single.TAG =>
-                    val name = child.text
-                    val cups = child.attribute("cups").getOrElse("1").toString.toDouble
-                    val calories = child.attribute("calories").getOrElse("100").toString.toDouble
-                    val single = Single(name, calories, cups)
+                    val single = Single()
+                    single.loadXML(child)
                     subIngredients += single
                 case _ =>
             }
@@ -61,13 +61,47 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
         XMLHelper.makeNode(Baked.TAG, attr, child)
     }
 
+    def addIngredient(): Unit = {
+        print("Name:> ")
+        name = StdIn.readLine()
+        print("Expansion Factor:> ")
+        expansionFactor = StdIn.readLine().toDouble
+
+        print("What ingredient (mix, baked, remeasure, single):> ")
+        val ingType = StdIn.readLine().toLowerCase
+
+        if (ingType == "mix" || ingType == "m") {
+            val mix = Mix()
+            mix.addIngredient()
+            println("Added mix")
+            subIngredients += mix
+        } else if (ingType == "baked" || ingType == "b") {
+            val baked = Baked()
+            baked.addIngredient()
+            println("Added baked")
+            subIngredients += baked
+        } else if (ingType == "remeasure" || ingType == "r") {
+            val remeasure = Remeasure()
+            remeasure.addIngredient()
+            println("Added remeasure")
+            subIngredients += remeasure
+        } else if (ingType == "single" || ingType == "s") {
+            val single = Single()
+            single.addIngredient()
+            println("Added single")
+            subIngredients += single
+        } else {
+            println("Ingredient format not found")
+        }
+    }
+
     /*
     Searches subIngredient(s) for ingredient
     return: true if found
     */
     def findIngredient(name: String): Boolean = {
         if (this.name.isEmpty) {
-            val subName = subIngredients(0).name
+            val subName = subIngredients(0).getName
             if(name == ("baked " + subName))
                 return true
         } else if(this.name == name) {
@@ -103,7 +137,7 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
     */
     def getInfo(depth: Int): String = {
         if(name.isEmpty) {
-            s"${spaces * depth}baked ${subIngredients(0).name} (${expansionFactor})\n" +
+            s"${spaces * depth}baked ${subIngredients(0).getName} (${expansionFactor})\n" +
               subIngredients.map(x => x.getInfo(depth + 1)).mkString("\n")
         } else {
             s"${spaces * depth}${name.capitalize} (${expansionFactor})\n" +
@@ -115,7 +149,7 @@ class Baked(name: String, expansionFactor: Double) extends Ingredient(name: Stri
 object Baked {
     val TAG = "baked"
 
-    def apply(name: String, expansionFactor: Double): Baked = {
-        new Baked(name, expansionFactor)
+    def apply(): Baked = {
+        new Baked()
     }
 }

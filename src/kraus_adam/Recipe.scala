@@ -22,26 +22,20 @@ class Recipe(name: String) extends XMLReadWrite {
             val tag = child.label
             tag match {
                 case Mix.TAG =>
-                    val name = child.attribute("name").get.toString
-                    val mix = Mix(name)
+                    val mix = Mix()
                     mix.loadXML(child)
                     ingredients += mix
                 case Baked.TAG =>
-                    val name = child.attribute("name").getOrElse("").toString
-                    val expFac = child.attribute("expansion").getOrElse("1").toString.toDouble
-                    val baked = Baked(name, expFac)
+                    val baked = Baked()
                     baked.loadXML(child)
                     ingredients += baked
                 case Remeasure.TAG =>
-                    val quantity = child.attribute("quantity").get.toString.toDouble
-                    val remeasure = Remeasure(quantity)
+                    val remeasure = Remeasure()
                     remeasure.loadXML(child)
                     ingredients += remeasure
                 case Single.TAG =>
-                    val name = child.text
-                    val cups = child.attribute("cups").getOrElse("1").toString.toDouble
-                    val calories = child.attribute("calories").getOrElse("100").toString.toDouble
-                    val single = Single(name, calories, cups)
+                    val single = Single()
+                    single.loadXML(child)
                     ingredients += single
                 case _ =>
             }
@@ -59,49 +53,29 @@ class Recipe(name: String) extends XMLReadWrite {
     }
 
     def addIngredient(): Unit = {
-        // TODO change to make each ingredient do their own prompting
         print("What ingredient (mix, baked, remeasure, single):> ")
-        var ingType = StdIn.readLine()
-        ingType = ingType.toLowerCase
+        val ingType = StdIn.readLine().toLowerCase
 
         if (ingType == "mix" || ingType == "m") {
-            print("Name:> ")
-            val name = StdIn.readLine()
-            val mix = Mix(name)
-            var more = ""
-            while (more != "n") {
-                mix.addIngredient()
-                print("Add another ingredient (y/n):> ")
-                more = StdIn.readLine()
-                more = more.toLowerCase
-            }
+            val mix = Mix()
+            mix.addIngredient()
             println("Added mix")
             ingredients += mix
         } else if (ingType == "baked" || ingType == "b") {
-            print("Name:> ")
-            val name = StdIn.readLine()
-            print("Expansion Factor:> ")
-            val expFac = StdIn.readLine().toDouble
-            val baked = Baked(name, expFac)
+            val baked = Baked()
             baked.addIngredient()
             println("Added baked")
             ingredients += baked
         } else if (ingType == "remeasure" || ingType == "r") {
-            print("New Quantity:> ")
-            val quantity = StdIn.readLine().toDouble
-            val remeasure = Remeasure(quantity)
+            val remeasure = Remeasure()
             remeasure.addIngredient()
             println("Added remeasure")
             ingredients += remeasure
         } else if (ingType == "single" || ingType == "s") {
-            print("Name:> ")
-            val name = StdIn.readLine()
-            print("Calories:> ")
-            val calories = StdIn.readLine().toDouble
-            print("Cups:> ")
-            val volume = StdIn.readLine().toDouble
+            val single = Single()
+            single.addIngredient()
             println("Added single")
-            ingredients += Single(name, calories, volume)
+            ingredients += single
         } else {
             println("Ingredient format not found")
         }
@@ -136,7 +110,7 @@ class Recipe(name: String) extends XMLReadWrite {
 
     override def toString: String = {
         s"""
-          |Recipe: ${this.name}
+          |Recipe: ${name.capitalize}
           |==================================
           |${ingredients.map(x => x.getInfo(1)).mkString("\n")}
           """.stripMargin

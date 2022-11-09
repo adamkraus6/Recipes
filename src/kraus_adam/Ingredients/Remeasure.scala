@@ -5,42 +5,40 @@ import kraus_adam.XMLReadWrite
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.xml.*
+import scala.io.StdIn
 
 
 /*
 Remeasures sub ingredients
 */
-class Remeasure(name: String, quantity: Double) extends Ingredient(name: String) with XMLReadWrite {
+class Remeasure() extends Ingredient() with XMLReadWrite {
+    protected var quantity: Double = 0
     /*
     Loads information from an XML node into class
     param node: XML node
     */
     def loadXML(node: Node): Unit = {
+        quantity = node.attribute("quantity").getOrElse("1").toString.toDouble
+
         val children = node.child
         for (child <- children) {
             val tag = child.label
             tag match {
                 case Mix.TAG =>
-                    val name = child.attribute("name").get.toString
-                    val mix = Mix(name)
+                    val mix = Mix()
                     mix.loadXML(child)
                     subIngredients += mix
                 case Baked.TAG =>
-                    val name = child.attribute("name").getOrElse("").toString
-                    val expFac = child.attribute("expansion").getOrElse("1").toString.toDouble
-                    val baked = Baked(name, expFac)
+                    val baked = Baked()
                     baked.loadXML(child)
                     subIngredients += baked
                 case Remeasure.TAG =>
-                    val quantity = child.attribute("quantity").getOrElse("1").toString.toDouble
-                    val remeasure = Remeasure(quantity)
+                    val remeasure = Remeasure()
                     remeasure.loadXML(child)
                     subIngredients += remeasure
                 case Single.TAG =>
-                    val name = child.text
-                    val cups = child.attribute("cups").getOrElse("1").toString.toDouble
-                    val calories = child.attribute("calories").getOrElse("100").toString.toDouble
-                    val single = Single(name, calories, cups)
+                    val single = Single()
+                    single.loadXML(child)
                     subIngredients += single
                 case _ =>
             }
@@ -55,6 +53,38 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("quantity", quantity.toString))
         val child = subIngredients.map(i => i.writeXML())
         XMLHelper.makeNode(Remeasure.TAG, attr, child)
+    }
+
+    def addIngredient(): Unit = {
+        print("New Quantity:> ")
+        quantity = StdIn.readLine().toDouble
+
+        print("What ingredient (mix, baked, remeasure, single):> ")
+        val ingType = StdIn.readLine().toLowerCase
+
+        if (ingType == "mix" || ingType == "m") {
+            val mix = Mix()
+            mix.addIngredient()
+            println("Added mix")
+            subIngredients += mix
+        } else if (ingType == "baked" || ingType == "b") {
+            val baked = Baked()
+            baked.addIngredient()
+            println("Added baked")
+            subIngredients += baked
+        } else if (ingType == "remeasure" || ingType == "r") {
+            val remeasure = Remeasure()
+            remeasure.addIngredient()
+            println("Added remeasure")
+            subIngredients += remeasure
+        } else if (ingType == "single" || ingType == "s") {
+            val single = Single()
+            single.addIngredient()
+            println("Added single")
+            subIngredients += single
+        } else {
+            println("Ingredient format not found")
+        }
     }
 
     /*
@@ -101,7 +131,7 @@ class Remeasure(name: String, quantity: Double) extends Ingredient(name: String)
 object Remeasure {
     val TAG = "remeasure"
 
-    def apply(quantity: Double): Remeasure = {
-        new Remeasure("", quantity)
+    def apply(): Remeasure = {
+        new Remeasure()
     }
 }

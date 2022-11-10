@@ -3,7 +3,6 @@ package kraus_adam.Ingredients
 import java.text.DecimalFormat
 import kraus_adam.XMLReadWrite
 import scala.collection.mutable.ListBuffer
-import scala.io.StdIn
 
 /*
 Parent ingredient class
@@ -15,7 +14,7 @@ abstract class Ingredient() extends XMLReadWrite {
     protected val format = new DecimalFormat("0.#")
     
     /*
-    Adds an ingredient to recipe/another ingredient
+    Prompts for class information and then subingredient(s)
     */
     def addIngredient(): Unit
 

@@ -3,8 +3,8 @@ package kraus_adam.Ingredients
 import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
 import scala.collection.mutable
-import scala.xml.*
 import scala.io.StdIn
+import scala.xml.*
 
 /*
 Basic single ingredient with calories and volume
@@ -32,6 +32,9 @@ class Single() extends Ingredient() with XMLReadWrite {
         XMLHelper.makeNode(Single.TAG, attr, text)
     }
 
+    /*
+    Prompts for class information
+    */
     def addIngredient(): Unit = {
         print("Name:> ")
         this.name = StdIn.readLine().toLowerCase

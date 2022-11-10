@@ -5,7 +5,6 @@ package kraus_adam.Ingredients
 
 import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
-
 import scala.collection.mutable
 import scala.io.StdIn
 import scala.xml.*
@@ -15,6 +14,7 @@ Baked ingredient that expands sub ingredient by a certain factor
 */
 class Baked() extends Ingredient() with XMLReadWrite {
     private var expansionFactor: Double = 0
+
     /*
     Loads information from an XML node into class
     param node: XML node
@@ -61,6 +61,9 @@ class Baked() extends Ingredient() with XMLReadWrite {
         XMLHelper.makeNode(Baked.TAG, attr, child)
     }
 
+    /*
+    Prompts for class information and then subingredient(s)
+    */
     def addIngredient(): Unit = {
         print("Name:> ")
         name = StdIn.readLine()

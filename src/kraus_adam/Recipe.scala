@@ -52,6 +52,9 @@ class Recipe(name: String) extends XMLReadWrite {
         XMLHelper.makeNode(Recipe.TAG, attr, child)
     }
 
+    /*
+    Prompts for ingredient type and adds sub ingredient(s)
+    */
     def addIngredient(): Unit = {
         print("What ingredient (mix, baked, remeasure, single):> ")
         val ingType = StdIn.readLine().toLowerCase

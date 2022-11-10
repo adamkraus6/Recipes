@@ -4,8 +4,8 @@ import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
 import scala.collection.mutable
 import scala.collection.parallel.CollectionConverters.*
-import scala.xml.*
 import scala.io.StdIn
+import scala.xml.*
 
 
 /*
@@ -54,6 +54,9 @@ class Mix() extends Ingredient() with XMLReadWrite {
         XMLHelper.makeNode(Mix.TAG, attr, children)
     }
 
+    /*
+    Prompts for class information and then subingredient(s)
+    */
     def addIngredient(): Unit = {
         print("Name:> ")
         name = StdIn.readLine()

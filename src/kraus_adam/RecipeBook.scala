@@ -35,10 +35,18 @@ class RecipeBook() extends XMLReadWrite {
         XMLHelper.makeNode(RecipeBook.TAG, null, children)
     }
 
+    /*
+    Adds recipe to list
+    */
     def addRecipe(recipe: Recipe) = {
         recipes += recipe
     }
 
+    /*
+    Finds recipe in list
+    param name: name of recipe to find
+    return: true if found
+    */
     def findRecipe(name: String): Boolean = {
         for(recipe <- recipes) {
             if(recipe.getName == name) {
@@ -49,6 +57,10 @@ class RecipeBook() extends XMLReadWrite {
         false
     }
 
+    /*
+    Searches recipe name and ingredient(s) for ingredient
+    param name: name/ingredient to fine
+    */
     def findIngredient(name: String): Unit = {
         for(recipe <- recipes) {
             if(recipe.findIngredient(name)) {
@@ -60,6 +72,11 @@ class RecipeBook() extends XMLReadWrite {
         println(name + " not found")
     }
 
+    /*
+    Gets the calories for a recipe
+    param name: name of recipe
+    return: calories in recipe
+    */
     def calcCal(name: String): Double = {
         for(recipe <- recipes) {
             if(recipe.getName == name) {
@@ -70,6 +87,11 @@ class RecipeBook() extends XMLReadWrite {
         0
     }
 
+    /*
+    Gets the volume of a recipe
+    param name: name of recipe
+    return: volume in cups of recipe
+    */
     def calcVol(name: String): Double = {
         for (recipe <- recipes) {
             if (recipe.getName == name) {
@@ -80,6 +102,11 @@ class RecipeBook() extends XMLReadWrite {
         0
     }
 
+    /*
+    Removes a recipe from list
+    param name: name of recipe
+    return: true if found/removed
+    */
     def remove(name: String): Boolean = {
         for (i <- 0 to recipes.length-1) {
             if (recipes(i).getName == name) {
@@ -90,6 +117,9 @@ class RecipeBook() extends XMLReadWrite {
         false
     }
 
+    /*
+    Prints calorie density of recipes
+    */
     def printDensity(): Unit = {
         val format = new DecimalFormat("0.0")
         for(recipe <- recipes) {
@@ -97,6 +127,9 @@ class RecipeBook() extends XMLReadWrite {
         }
     }
 
+    /*
+    Prints data for all recipes
+    */
     override def toString: String = {
         var str = ""
         for(recipe <- recipes) {

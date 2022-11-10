@@ -4,8 +4,8 @@ import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-import scala.xml.*
 import scala.io.StdIn
+import scala.xml.*
 
 
 /*
@@ -55,6 +55,9 @@ class Remeasure() extends Ingredient() with XMLReadWrite {
         XMLHelper.makeNode(Remeasure.TAG, attr, child)
     }
 
+    /*
+    Prompts for class information and then subingredient(s)
+    */
     def addIngredient(): Unit = {
         print("New Quantity:> ")
         quantity = StdIn.readLine().toDouble

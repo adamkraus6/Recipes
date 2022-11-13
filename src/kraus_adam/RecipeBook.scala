@@ -5,6 +5,9 @@ import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks.*
 import scala.xml.*
 
+/*
+Recipe collection classes
+*/
 class RecipeBook() extends XMLReadWrite {
     private var recipes: ListBuffer[Recipe] = ListBuffer[Recipe]()
 

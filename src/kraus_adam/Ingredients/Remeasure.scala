@@ -7,7 +7,6 @@ import scala.collection.mutable.ListBuffer
 import scala.io.StdIn
 import scala.xml.*
 
-
 /*
 Remeasures sub ingredients
 */

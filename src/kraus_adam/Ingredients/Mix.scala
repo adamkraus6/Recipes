@@ -7,7 +7,6 @@ import scala.collection.parallel.CollectionConverters.*
 import scala.io.StdIn
 import scala.xml.*
 
-
 /*
 Mix of many sub ingredients
 */

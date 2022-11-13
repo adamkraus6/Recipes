@@ -1,6 +1,3 @@
-/*
-
-*/
 package kraus_adam.Ingredients
 
 import kraus_adam.XMLHelper

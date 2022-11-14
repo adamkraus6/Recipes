@@ -1,6 +1,5 @@
 package kraus_adam
 
-import kraus_adam.XMLHelper._
 import scala.xml.*
 
 trait XMLReadWrite {

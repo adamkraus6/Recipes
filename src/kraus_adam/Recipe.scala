@@ -9,7 +9,7 @@ import scala.xml.*
 /*
 Recipe class that holds ingredients
 */
-class Recipe(name: String) extends XMLReadWrite {
+class Recipe(private var name: String) extends XMLReadWrite {
     private val ingredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
 
     /*
@@ -96,7 +96,7 @@ class Recipe(name: String) extends XMLReadWrite {
     }
     
     def getName: String = {
-        this.name
+        name
     }
 
     def calcCal(): Double = {

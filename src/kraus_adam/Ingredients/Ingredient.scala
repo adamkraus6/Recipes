@@ -36,6 +36,10 @@ abstract class Ingredient() extends XMLReadWrite {
     */
     def getVol: Double
     
+
+    /*
+    Gets the ingredient name
+    */
     def getName: String = name
 
     /*

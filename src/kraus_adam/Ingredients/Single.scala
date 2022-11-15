@@ -2,6 +2,8 @@ package kraus_adam.Ingredients
 
 import kraus_adam.XMLHelper
 import kraus_adam.XMLReadWrite
+
+import java.text.DecimalFormat
 import scala.collection.mutable
 import scala.io.StdIn
 import scala.xml.*
@@ -10,8 +12,10 @@ import scala.xml.*
 Basic single ingredient with calories and volume
 */
 class Single() extends Ingredient() with XMLReadWrite {
-    protected var calories: Double = 0
-    protected var cups: Double = 0
+    private var calories: Double = 0
+    private var cups: Double = 0
+    private val format = new DecimalFormat("0.##")
+
     /*
     Loads information from an XML node into class
     param node: XML node
@@ -78,8 +82,8 @@ class Single() extends Ingredient() with XMLReadWrite {
     */
     def getInfo(depth: Int): String = {
         s"${spaces * depth}______${name.capitalize}______\n" +
-          s"${spaces * depth}Cups: ${format.format(cups.round)}\n" +
-          s"${spaces * depth}Calories: ${format.format(calories.round)}\n"
+          s"${spaces * depth}Cups: ${format.format(cups)}\n" +
+          s"${spaces * depth}Calories: ${format.format(calories)}\n"
     }
 }
 

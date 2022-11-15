@@ -1,6 +1,5 @@
 package kraus_adam.Ingredients
 
-import java.text.DecimalFormat
 import kraus_adam.XMLReadWrite
 import scala.collection.mutable.ListBuffer
 
@@ -11,7 +10,6 @@ abstract class Ingredient() extends XMLReadWrite {
     protected var name: String = _
     protected val subIngredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
     protected val spaces = "  "
-    protected val format = new DecimalFormat("0.#")
     
     /*
     Prompts for class information and then subingredient(s)

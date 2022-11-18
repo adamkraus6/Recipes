@@ -32,7 +32,7 @@ class Single() extends Ingredient() with XMLReadWrite {
     */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("calories", calories.toString), ("cups", cups.toString))
-        val text = Text(this.name)
+        val text = Text(name)
         XMLHelper.makeNode(Single.TAG, attr, text)
     }
 
@@ -41,11 +41,11 @@ class Single() extends Ingredient() with XMLReadWrite {
     */
     def addIngredient(): Unit = {
         print("Name:> ")
-        this.name = StdIn.readLine().toLowerCase
+        name = StdIn.readLine().toLowerCase
         print("Calories:> ")
-        calories = StdIn.readLine().toDouble
+        calories = StdIn.readDouble()
         print("Cups:> ")
-        cups = StdIn.readLine().toDouble
+        cups = StdIn.readDouble()
     }
 
     /*
@@ -81,7 +81,7 @@ class Single() extends Ingredient() with XMLReadWrite {
     return: formatted string
     */
     def getInfo(depth: Int): String = {
-        s"${spaces * depth}______${name.capitalize}______\n" +
+        s"${spaces * depth}______${name}______\n" +
           s"${spaces * depth}Cups: ${format.format(cups)}\n" +
           s"${spaces * depth}Calories: ${format.format(calories)}\n"
     }

@@ -116,7 +116,7 @@ object MainStarter {
                 val name = StdIn.readLine().toLowerCase
                 val removed = recipes.remove(name)
                 if(removed) {
-                    println("removed " + name)
+                    println(s"removed ${name}")
                 } else {
                     println("recipe not found")
                 }
@@ -163,7 +163,7 @@ object MainStarter {
                 print("What recipe:> ")
                 val name = StdIn.readLine().toLowerCase
                 val cups = recipes.calcVol(name)
-                println("Volume in cups: " + format.format(cups))
+                println(s"Volume in cups: ${format.format(cups)}")
             } else if(choice == "9") {
                 // Calculate Calorie Density
                 recipes.printDensity()

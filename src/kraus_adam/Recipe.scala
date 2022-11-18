@@ -10,7 +10,7 @@ import scala.xml.*
 Recipe class that holds ingredients
 */
 class Recipe(private var name: String) extends XMLReadWrite {
-    private val ingredients: ListBuffer[Ingredient] = ListBuffer[Ingredient]()
+    private var ingredient: Ingredient = _
 
     /*
     Loads information from an XML node into class
@@ -24,19 +24,19 @@ class Recipe(private var name: String) extends XMLReadWrite {
                 case Mix.TAG =>
                     val mix = Mix()
                     mix.loadXML(child)
-                    ingredients += mix
+                    ingredient = mix
                 case Baked.TAG =>
                     val baked = Baked()
                     baked.loadXML(child)
-                    ingredients += baked
+                    ingredient = baked
                 case Remeasure.TAG =>
                     val remeasure = Remeasure()
                     remeasure.loadXML(child)
-                    ingredients += remeasure
+                    ingredient = remeasure
                 case Single.TAG =>
                     val single = Single()
                     single.loadXML(child)
-                    ingredients += single
+                    ingredient = single
                 case _ =>
             }
         }
@@ -48,7 +48,7 @@ class Recipe(private var name: String) extends XMLReadWrite {
     */
     def writeXML(): Elem = {
         val attr: mutable.HashMap[String, String] = mutable.HashMap(("name", name))
-        val child = ingredients.map(i => i.writeXML())
+        val child = ingredient.writeXML()
         XMLHelper.makeNode(Recipe.TAG, attr, child)
     }
 
@@ -63,36 +63,33 @@ class Recipe(private var name: String) extends XMLReadWrite {
             val mix = Mix()
             mix.addIngredient()
             println("Added mix")
-            ingredients += mix
+            ingredient = mix
         } else if (ingType == "baked" || ingType == "b") {
             val baked = Baked()
             baked.addIngredient()
             println("Added baked")
-            ingredients += baked
+            ingredient = baked
         } else if (ingType == "remeasure" || ingType == "r") {
             val remeasure = Remeasure()
             remeasure.addIngredient()
             println("Added remeasure")
-            ingredients += remeasure
+            ingredient = remeasure
         } else if (ingType == "single" || ingType == "s") {
             val single = Single()
             single.addIngredient()
             println("Added single")
-            ingredients += single
+            ingredient = single
         } else {
             println("Ingredient format not found")
         }
     }
 
     def findIngredient(name: String): Boolean = {
-        if(this.name == name)
+        if(this.name == name) {
             return true
+        }
 
-        for(ing <- ingredients)
-            if(ing.findIngredient(name))
-                return true
-
-        false
+        ingredient.findIngredient(name)
     }
     
     def getName: String = {
@@ -100,11 +97,11 @@ class Recipe(private var name: String) extends XMLReadWrite {
     }
 
     def calcCal(): Double = {
-        ingredients(0).getCal
+        ingredient.getCal
     }
     
     def calcVol(): Double = {
-        ingredients(0).getVol
+        ingredient.getVol
     }
 
     def calcDensity(): Double = {
@@ -113,9 +110,9 @@ class Recipe(private var name: String) extends XMLReadWrite {
 
     override def toString: String = {
         s"""
-          |Recipe: ${name.capitalize}
+          |Recipe: ${name}
           |==================================
-          |${ingredients.map(x => x.getInfo(1)).mkString("\n")}
+          |${ingredient.getInfo(1)}\n
           """.stripMargin
     }
 }

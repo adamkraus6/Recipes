@@ -51,13 +51,7 @@ class RecipeBook() extends XMLReadWrite {
     return: true if found
     */
     def findRecipe(name: String): Boolean = {
-        for(recipe <- recipes) {
-            if(recipe.getName == name) {
-                return true
-            }
-        }
-
-        false
+        recipes.map(r => r.getName == name).filter(r => r == true).size == 1
     }
 
     /*
@@ -67,12 +61,12 @@ class RecipeBook() extends XMLReadWrite {
     def findIngredient(name: String): Unit = {
         for(recipe <- recipes) {
             if(recipe.findIngredient(name)) {
-                println(name + " found in " + recipe.getName)
+                println(s"${name} found in ${recipe.getName}")
                 return
             }
         }
 
-        println(name + " not found")
+        println(s"${name} not found")
     }
 
     /*
@@ -125,20 +119,15 @@ class RecipeBook() extends XMLReadWrite {
     */
     def printDensity(): Unit = {
         val format = new DecimalFormat("0.0")
-        for(recipe <- recipes) {
-            println(recipe.getName + ": " + format.format(recipe.calcDensity()))
-        }
+
+        println(recipes.map(r => s"${r.getName}: ${format.format(r.calcDensity())}").mkString("\n"))
     }
 
     /*
     Prints data for all recipes
     */
     override def toString: String = {
-        var str = ""
-        for(recipe <- recipes) {
-            str += recipe.toString
-        }
-        str
+        recipes.map(r => r.toString).mkString("\n")
     }
 }
 

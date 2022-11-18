@@ -58,7 +58,7 @@ class Mix() extends Ingredient() with XMLReadWrite {
     */
     def addIngredient(): Unit = {
         print("Name:> ")
-        name = StdIn.readLine()
+        name = StdIn.readLine().toLowerCase
 
         var more = ""
         while (more != "n") {
@@ -130,7 +130,7 @@ class Mix() extends Ingredient() with XMLReadWrite {
     return: formatted string
     */
     def getInfo(depth: Int): String = {
-        s"${spaces * depth}${name.capitalize}\n" +
+        s"${spaces * depth}${name}\n" +
           s"${spaces * depth}*****************************\n" +
           subIngredients.map(x => x.getInfo(depth+1)).mkString("\n") +
           s"${spaces * depth}*****************************\n"

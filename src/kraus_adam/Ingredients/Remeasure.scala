@@ -59,7 +59,7 @@ class Remeasure() extends Ingredient() with XMLReadWrite {
     */
     def addIngredient(): Unit = {
         print("New Quantity:> ")
-        quantity = StdIn.readLine().toDouble
+        quantity = StdIn.readDouble()
 
         print("What ingredient (mix, baked, remeasure, single):> ")
         val ingType = StdIn.readLine().toLowerCase

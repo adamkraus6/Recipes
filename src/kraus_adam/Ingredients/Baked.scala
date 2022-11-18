@@ -63,9 +63,9 @@ class Baked() extends Ingredient() with XMLReadWrite {
     */
     def addIngredient(): Unit = {
         print("Name:> ")
-        name = StdIn.readLine()
+        name = StdIn.readLine().toLowerCase
         print("Expansion Factor:> ")
-        expansionFactor = StdIn.readLine().toDouble
+        expansionFactor = StdIn.readDouble()
 
         print("What ingredient (mix, baked, remeasure, single):> ")
         val ingType = StdIn.readLine().toLowerCase
@@ -102,7 +102,7 @@ class Baked() extends Ingredient() with XMLReadWrite {
     def findIngredient(name: String): Boolean = {
         if (this.name.isEmpty) {
             val subName = subIngredients(0).getName
-            if(name == ("baked " + subName))
+            if(name == s"baked ${subName}")
                 return true
         } else if(this.name == name) {
             return true
@@ -136,12 +136,11 @@ class Baked() extends Ingredient() with XMLReadWrite {
     return: formatted string
     */
     def getInfo(depth: Int): String = {
+        val sub: String = subIngredients.map(x => x.getInfo(depth + 1)).mkString("\n")
         if(name.isEmpty) {
-            s"${spaces * depth}baked ${subIngredients(0).getName} (${expansionFactor})\n" +
-              subIngredients.map(x => x.getInfo(depth + 1)).mkString("\n")
+            s"${spaces * depth}baked ${subIngredients(0).getName} (${expansionFactor})\n${sub}"
         } else {
-            s"${spaces * depth}${name.capitalize} (${expansionFactor})\n" +
-              subIngredients.map(x => x.getInfo(depth + 1)).mkString("\n")
+            s"${spaces * depth}${name} (${expansionFactor})\n${sub}"
         }
     }
 }

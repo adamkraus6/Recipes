@@ -69,35 +69,40 @@ File name:> [34;1mmessy.xml[0m
 
 Choice:> [34;1m2[0m
 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 100
 
+
           
-Recipe: Scalded milk
+
+Recipe: scalded milk
 ==================================
   baked milk (1.0)
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Oatmeal
+
+Recipe: oatmeal
 ==================================
   baked soaked oats (1.0)
-    Soaked oats
+    soaked oats
     *****************************
-      ______Water______
+      ______water______
       Cups: 1
       Calories: 0
 
       Remeasure to 0.75 cups
-        ______Sugar______
+        ______sugar______
         Cups: 1
         Calories: 607
     *****************************
+
 
           
 1) Add Data

@@ -23,76 +23,87 @@ Choice:> File name:>
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
 
+
           
-Recipe: Pint of milk
+
+Recipe: pint of milk
 ==================================
   Remeasure to 2.0 cups
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Condensed milk
+
+Recipe: condensed milk
 ==================================
-  Simmered (0.25)
-    ______Milk______
+  simmered (0.25)
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Half and half
+
+Recipe: half and half
 ==================================
-  Blend
+  blend
   *****************************
-    ______Milk______
+    ______milk______
     Cups: 0.5
     Calories: 103
 
-    ______Cream______
+    ______cream______
     Cups: 0.5
     Calories: 490
   *****************************
 
+
           
-Recipe: Sweetened condensed milk
+
+Recipe: sweetened condensed milk
 ==================================
-  Simmered (0.25)
-    Blend
+  simmered (0.25)
+    blend
     *****************************
-      ______Milk______
+      ______milk______
       Cups: 0.5
       Calories: 103
 
-      ______Sugar______
+      ______sugar______
       Cups: 0.12
       Calories: 96
     *****************************
 
+
           
-Recipe: Shortbread
+
+Recipe: shortbread
 ==================================
   baked dough (1.5)
-    Dough
+    dough
     *****************************
-      ______Butter______
+      ______butter______
       Cups: 1
       Calories: 1628
 
-      ______Flour______
+      ______flour______
       Cups: 1.25
       Calories: 455
 
       Remeasure to 0.75 cups
-        ______Sugar______
+        ______sugar______
         Cups: 1
         Calories: 773
     *****************************
+
 
           
 1) Add Data
@@ -119,92 +130,105 @@ Choice:> File name:>
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
 
+
           
-Recipe: Pint of milk
+
+Recipe: pint of milk
 ==================================
   Remeasure to 2.0 cups
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Condensed milk
+
+Recipe: condensed milk
 ==================================
-  Simmered (0.25)
-    ______Milk______
+  simmered (0.25)
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Half and half
+
+Recipe: half and half
 ==================================
-  Blend
+  blend
   *****************************
-    ______Milk______
+    ______milk______
     Cups: 0.5
     Calories: 103
 
-    ______Cream______
+    ______cream______
     Cups: 0.5
     Calories: 490
   *****************************
 
+
           
-Recipe: Sweetened condensed milk
+
+Recipe: sweetened condensed milk
 ==================================
-  Simmered (0.25)
-    Blend
+  simmered (0.25)
+    blend
     *****************************
-      ______Milk______
+      ______milk______
       Cups: 0.5
       Calories: 103
 
-      ______Sugar______
+      ______sugar______
       Cups: 0.12
       Calories: 96
     *****************************
 
+
           
-Recipe: Shortbread
+
+Recipe: shortbread
 ==================================
   baked dough (1.5)
-    Dough
+    dough
     *****************************
-      ______Butter______
+      ______butter______
       Cups: 1
       Calories: 1628
 
-      ______Flour______
+      ______flour______
       Cups: 1.25
       Calories: 455
 
       Remeasure to 0.75 cups
-        ______Sugar______
+        ______sugar______
         Cups: 1
         Calories: 773
     *****************************
 
+
           
-Recipe: Oatmeal
+
+Recipe: oatmeal
 ==================================
   baked soaked oats (2.2)
-    Soaked oats
+    soaked oats
     *****************************
-      ______Water______
+      ______water______
       Cups: 1
       Calories: 0
 
       Remeasure to 0.75 cups
-        ______Oats______
+        ______oats______
         Cups: 1
         Calories: 607
     *****************************
+
 
           
 1) Add Data

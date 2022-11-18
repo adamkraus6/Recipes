@@ -24,11 +24,12 @@ Choice:> What recipe:> What ingredient (mix, baked, remeasure, single):> Name:> 
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
+
 
           
 1) Add Data
@@ -70,19 +71,22 @@ Added remeasure
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
 
+
           
-Recipe: Pint of milk
+
+Recipe: pint of milk
 ==================================
   Remeasure to 2.0 cups
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
+
 
           
 1) Add Data
@@ -111,27 +115,32 @@ Added baked
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
 
+
           
-Recipe: Pint of milk
+
+Recipe: pint of milk
 ==================================
   Remeasure to 2.0 cups
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Condensed milk
+
+Recipe: condensed milk
 ==================================
-  Simmered (0.25)
-    ______Milk______
+  simmered (0.25)
+    ______milk______
     Cups: 1
     Calories: 103
+
 
           
 1) Add Data
@@ -161,41 +170,48 @@ Add another ingredient (y/n):> Added mix
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
 
+
           
-Recipe: Pint of milk
+
+Recipe: pint of milk
 ==================================
   Remeasure to 2.0 cups
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Condensed milk
+
+Recipe: condensed milk
 ==================================
-  Simmered (0.25)
-    ______Milk______
+  simmered (0.25)
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Half and half
+
+Recipe: half and half
 ==================================
-  Blend
+  blend
   *****************************
-    ______Milk______
+    ______milk______
     Cups: 0.5
     Calories: 103
 
-    ______Cream______
+    ______cream______
     Cups: 0.5
     Calories: 490
   *****************************
+
 
           
 1) Add Data
@@ -228,61 +244,70 @@ Added baked
 0) Quit
 
 Choice:> 
-Recipe: Milk
+Recipe: milk
 ==================================
-  ______Milk______
+  ______milk______
   Cups: 1
   Calories: 103
 
+
           
-Recipe: Pint of milk
+
+Recipe: pint of milk
 ==================================
   Remeasure to 2.0 cups
-    ______Milk______
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Condensed milk
+
+Recipe: condensed milk
 ==================================
-  Simmered (0.25)
-    ______Milk______
+  simmered (0.25)
+    ______milk______
     Cups: 1
     Calories: 103
 
+
           
-Recipe: Half and half
+
+Recipe: half and half
 ==================================
-  Blend
+  blend
   *****************************
-    ______Milk______
+    ______milk______
     Cups: 0.5
     Calories: 103
 
-    ______Cream______
+    ______cream______
     Cups: 0.5
     Calories: 490
   *****************************
 
+
           
-Recipe: Shortbread
+
+Recipe: shortbread
 ==================================
-  Cookie (1.5)
-    Dough
+  cookie (1.5)
+    dough
     *****************************
-      ______Butter______
+      ______butter______
       Cups: 1
       Calories: 1628
 
-      ______Flour______
+      ______flour______
       Cups: 1.25
       Calories: 455
 
       Remeasure to 0.75 cups
-        ______Sugar______
+        ______sugar______
         Cups: 1
         Calories: 773
     *****************************
+
 
           
 1) Add Data

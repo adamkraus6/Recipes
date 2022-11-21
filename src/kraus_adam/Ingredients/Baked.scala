@@ -108,10 +108,7 @@ class Baked() extends Ingredient() with XMLReadWrite {
             return true
         }
 
-        if (subIngredients(0).findIngredient(name))
-            return true
-
-        false
+        subIngredients(0).findIngredient(name)
     }
 
     /*

@@ -97,10 +97,7 @@ class Remeasure() extends Ingredient() with XMLReadWrite {
         if (this.name == name)
             return true
 
-        if (subIngredients(0).findIngredient(name))
-            return true
-
-        false
+        subIngredients(0).findIngredient(name)
     }
 
     /*

@@ -53,10 +53,7 @@ class Single() extends Ingredient() with XMLReadWrite {
     return: true if found
     */
     def findIngredient(name: String): Boolean = {
-        if(this.name == name)
-            return true
-
-        false
+        this.name == name
     }
 
     /*
